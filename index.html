@@ -1,486 +1,2372 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetConnect - Find Your Perfect Companion</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons (via CDN for static use) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-hover: #4f46e5;
-            --secondary: #10b981;
-            --background: #ffffff;
-            --foreground: #0f172a;
-            --muted: #f1f5f9;
-            --muted-foreground: #64748b;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --radius: 0.75rem;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <title>PetConnect Nepal</title>
 
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--background);
-            color: var(--foreground);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
-            z-index: 50;
-            padding: 0.75rem 1.5rem;
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  >
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .nav-links {
-            display: none;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-                gap: 1.5rem;
-                align-items: center;
-            }
-        }
+    body {
+      margin: 0;
+      background: #fff8f9;
+      color: #1f1418;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      overflow-x: hidden;
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--muted-foreground);
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+    .container {
+      max-width: 1280px;
+      margin: auto;
+      padding: 0 38px;
+    }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+    .material-symbols-outlined {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      line-height: 1;
+      vertical-align: middle;
+    }
 
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius);
-            font-weight: 500;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
+    /* HEADER */
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 248, 249, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #f4dfe6;
+    }
 
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
+    .header-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
 
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--border);
-            color: var(--foreground);
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #5c3325;
+      font-family: "Quicksand", sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+    }
 
-        .btn-outline:hover {
-            background-color: var(--muted);
-        }
+    .logo-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ffe4eb, #ffd4df);
+      border: 1px solid #f8ccd7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e05d7f;
+      position: relative;
+    }
 
-        /* Hero Section */
-        .hero {
-            padding: 8rem 1.5rem 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+    .logo-box::after {
+      content: "🐾";
+      position: absolute;
+      top: -5px;
+      right: -4px;
+      font-size: 11px;
+    }
 
-        @media (min-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                padding: 10rem 1.5rem 6rem;
-            }
-        }
+    .nepal-badge {
+      font-family: "Plus Jakarta Sans";
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e05d7f;
+      border: 1px solid #f8ccd7;
+      background: #fff0f4;
+      padding: 3px 7px;
+      border-radius: 20px;
+    }
 
-        .hero-content h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
+    nav {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
 
-        .hero-content p {
-            font-size: 1.125rem;
-            color: var(--muted-foreground);
-            margin-bottom: 2rem;
-            max-width: 500px;
-        }
+    nav a {
+      text-decoration: none;
+      color: #5c454d;
+      font-size: 14px;
+      font-weight: 600;
+      position: relative;
+    }
 
-        .hero-image {
-            position: relative;
-        }
+    nav a:hover {
+      color: #e05d7f;
+    }
 
-        .hero-image img {
-            width: 100%;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-        }
+    nav a.active {
+      color: #5c3325;
+    }
 
-        /* Features Section */
-        .section {
-            padding: 4rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 3px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #e05d7f, #6b3e2e);
+    }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #faebf0;
+      border: 1px solid #f4dfe6;
+      border-radius: 30px;
+      padding: 8px 14px;
+      color: #8c7179;
+    }
 
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 150px;
+      font-family: "Plus Jakarta Sans";
+      font-size: 13px;
+      color: #1f1418;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
+    /* HERO */
 
-        /* Pet Cards */
-        .pet-card {
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 75px 20px 65px;
+      overflow: hidden;
+    }
 
-        .pet-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 15px 0 15px;
+      z-index: -2;
+      background: linear-gradient(
+        180deg,
+        #faebf0 0%,
+        #fff0f4 55%,
+        #fff8f9 100%
+      );
+      border-radius: 0 0 70px 70px;
+      border-bottom: 1px solid #f8ccd7;
+    }
 
-        .pet-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+    .floating-paw {
+      position: absolute;
+      left: 8%;
+      top: 18%;
+      font-size: 52px;
+      opacity: 0.2;
+    }
 
-        .pet-details {
-            padding: 1rem;
-        }
+    .floating-bone {
+      position: absolute;
+      right: 8%;
+      top: 20%;
+      font-size: 55px;
+      opacity: 0.16;
+    }
 
-        .pet-details h3 {
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
-        }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: #fff0f4;
+      border: 1px solid #f8ccd7;
+      color: #c44569;
+      font-size: 13px;
+      font-weight: 700;
+    }
 
-        .pet-info {
-            display: flex;
-            gap: 0.5rem;
-            color: var(--muted-foreground);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
+    h1 {
+      font-family: "Quicksand", sans-serif;
+      font-size: 56px;
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+      margin: 27px auto 18px;
+      max-width: 900px;
+    }
 
-        /* Chatbot (Static Version) */
-        .chat-widget {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            z-index: 100;
-        }
+    .brown-heading {
+      color: #5c3325;
+      position: relative;
+    }
 
-        .chat-trigger {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-        }
+    .brown-heading::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      left: 0;
+      right: 0;
+      bottom: 2px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #e05d7f, #8c533e);
+      opacity: 0.55;
+      z-index: -1;
+    }
 
-        .chat-window {
-            position: absolute;
-            bottom: 4.5rem;
-            right: 0;
-            width: 320px;
-            height: 400px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
+    .hero-description {
+      max-width: 760px;
+      margin: auto;
+      color: #5c454d;
+      font-size: 18px;
+      line-height: 1.7;
+    }
 
-        .chat-header {
-            padding: 1rem;
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-        }
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-        .chat-body {
-            flex: 1;
-            padding: 1rem;
-            font-size: 0.875rem;
-            background: var(--muted);
-            overflow-y: auto;
-        }
+    .button {
+      border-radius: 30px;
+      padding: 15px 27px;
+      font-family: "Plus Jakarta Sans";
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .chat-footer {
-            padding: 0.75rem;
-            border-top: 1px solid var(--border);
-        }
+    .button-primary {
+      background: linear-gradient(90deg, #6b3e2e, #5c3325);
+      color: white;
+      box-shadow: 0 8px 24px rgba(92, 51, 37, 0.25);
+    }
 
-        /* Footer */
-        footer {
-            background: var(--muted);
-            padding: 4rem 1.5rem;
-            margin-top: 4rem;
-        }
+    .button-secondary {
+      background: white;
+      color: #1f1418;
+      border: 2px solid #f8ccd7;
+    }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
+    /* SECTIONS */
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
+    .section {
+      padding: 35px 0;
+    }
 
-        .footer-links a {
-            color: var(--muted-foreground);
-            text-decoration: none;
-            font-size: 0.875rem;
-        }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
 
-        /* Helper Classes */
-        .text-primary { color: var(--primary); }
-        .hidden { display: none; }
-        .flex { display: flex; }
-    </style>
+    .section-header h2 {
+      margin: 0;
+      font-family: "Quicksand";
+      font-size: 31px;
+    }
+
+    .section-header p {
+      margin: 5px 0 0;
+      color: #5c454d;
+      font-size: 15px;
+    }
+
+    .view-all {
+      text-decoration: none;
+      color: #9e421d;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* MATCHER */
+
+    .matcher {
+      padding: 27px;
+      border-radius: 32px;
+      background: linear-gradient(
+        135deg,
+        #fff0f4,
+        #faebf0,
+        #fff8f9
+      );
+      border: 1px solid #f8ccd7;
+      box-shadow: 0 6px 24px rgba(224, 93, 127, 0.08);
+    }
+
+    .matcher h3 {
+      margin: 0;
+      font-family: "Quicksand";
+      font-size: 25px;
+    }
+
+    .matcher p {
+      color: #5c454d;
+      font-size: 14px;
+    }
+
+    .vibe-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .vibe {
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid #f4dfe6;
+      background: rgba(255,255,255,.85);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .vibe:hover {
+      border-color: #e05d7f;
+    }
+
+    .vibe strong {
+      display: block;
+      font-family: "Quicksand";
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .vibe small {
+      color: #5c454d;
+      line-height: 1.4;
+    }
+
+    /* CATEGORIES */
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 12px;
+    }
+
+    .category {
+      text-align: center;
+      background: white;
+      border: 1px solid #f4dfe6;
+      border-radius: 22px;
+      padding: 14px 8px;
+      box-shadow: 0 6px 24px rgba(224, 93, 127, 0.07);
+    }
+
+    .category-icon {
+      width: 56px;
+      height: 56px;
+      margin: auto auto 10px;
+      background: #fff0f4;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e05d7f;
+    }
+
+    .category strong {
+      font-size: 12px;
+    }
+
+    /* SPOTLIGHT */
+
+    .spotlight {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      gap: 30px;
+      padding: 28px;
+      border-radius: 36px;
+      border: 1px solid #f8ccd7;
+      background: linear-gradient(
+        135deg,
+        white,
+        #fff8f9,
+        #faebf0
+      );
+      box-shadow: 0 10px 36px rgba(224, 93, 127, 0.12);
+    }
+
+    .spotlight-image {
+      position: relative;
+      height: 370px;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .spotlight-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .spotlight-badge {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      background: rgba(255,240,244,.96);
+      border: 1px solid #f8ccd7;
+      border-radius: 30px;
+      padding: 8px 12px;
+      color: #c44569;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .spotlight h3 {
+      margin: 8px 0;
+      font-family: "Quicksand";
+      font-size: 34px;
+    }
+
+    .muted {
+      color: #5c454d;
+    }
+
+    .fee {
+      float: right;
+      background: #fff0f4;
+      border: 1px solid #f8ccd7;
+      border-radius: 18px;
+      padding: 9px 14px;
+      color: #5c3325;
+      font-weight: 800;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    .chip {
+      background: white;
+      border: 1px solid #f8ccd7;
+      color: #5c3325;
+      border-radius: 30px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 11px;
+      padding: 14px;
+      background: rgba(255,255,255,.9);
+      border: 1px solid #f4dfe6;
+      border-radius: 18px;
+    }
+
+    .stat {
+      font-size: 11px;
+      font-weight: 700;
+      color: #5c454d;
+    }
+
+    .bar {
+      height: 7px;
+      background: #faebf0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 7px;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #8c533e, #e05d7f);
+    }
+
+    /* PET CARDS */
+
+    .pet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pet-card {
+      background: white;
+      border: 1px solid #f4dfe6;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(224, 93, 127, 0.07);
+      transition: 0.3s;
+    }
+
+    .pet-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 40px rgba(92,51,37,.14);
+    }
+
+    .pet-photo {
+      height: 270px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pet-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .6s;
+    }
+
+    .pet-card:hover .pet-photo img {
+      transform: scale(1.06);
+    }
+
+    .favorite-button {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      cursor: pointer;
+    }
+
+    .status {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      padding: 6px 15px;
+      border-radius: 25px;
+      background: #fff0f4;
+      border: 1px solid #f8ccd7;
+      color: #c44569;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pet-info {
+      padding: 22px;
+    }
+
+    .pet-name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pet-info h3 {
+      font-family: "Quicksand";
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .price {
+      border-radius: 25px;
+      background: #fff0f4;
+      border: 1px solid #f8ccd7;
+      color: #9e421d;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .traits,
+    .tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 11px;
+    }
+
+    .traits span {
+      background: #faebf0;
+      border-radius: 25px;
+      padding: 4px 9px;
+      color: #5c454d;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tags span {
+      background: #fff8f9;
+      border: 1px solid #f4dfe6;
+      border-radius: 25px;
+      padding: 6px 10px;
+      color: #5c454d;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .location {
+      margin-top: 15px;
+      color: #5c454d;
+      font-size: 13px;
+    }
+
+    /* VET SECTION */
+
+    .vet-section {
+      display: grid;
+      grid-template-columns: 175px 1fr;
+      gap: 30px;
+      align-items: center;
+      padding: 30px;
+      border: 1px solid #f8ccd7;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 10px 36px rgba(224, 93, 127, 0.1);
+    }
+
+    .vet-photo {
+      width: 170px;
+      height: 170px;
+      border-radius: 27px;
+      background: linear-gradient(145deg,#e8eff5,#cbdce8);
+      border: 3px solid white;
+      box-shadow: 0 8px 28px rgba(0,0,0,.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #1e3a5f;
+    }
+
+    .vet-section h2 {
+      font-family: "Quicksand";
+      font-size: 31px;
+      margin: 6px 0;
+    }
+
+    .vet-benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .vet-benefit {
+      background: white;
+      border: 1px solid #f4dfe6;
+      border-radius: 16px;
+      padding: 13px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 40px;
+      background: #e6eeff;
+      border-top: 1px solid #dde9ff;
+      border-radius: 32px 32px 0 0;
+      padding-top: 42px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 55px;
+    }
+
+    .footer-links div {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #56423c;
+      font-size: 13px;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 28px;
+      padding: 17px;
+      border-top: 1px solid rgba(221,193,183,.35);
+      color: #56423c;
+      font-size: 13px;
+    }
+
+    /* CHAT BUBBLE */
+
+    .chat {
+      position: fixed;
+      right: 25px;
+      bottom: 22px;
+      display: flex;
+      align-items: end;
+      gap: 12px;
+      z-index: 100;
+    }
+
+    .chat-text {
+      background: white;
+      border: 1px solid #f8ccd7;
+      border-radius: 22px;
+      padding: 13px 18px;
+      color: #5c3325;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    .chat-text strong {
+      display: block;
+      line-height: 1.05;
+    }
+
+    .chat-text small {
+      color: #8c7179;
+    }
+
+    .chat-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid #f8ccd7;
+      padding: 3px;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,.12);
+    }
+
+    .chat-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .chat-avatar::after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      background: #22c55e;
+      border: 2px solid white;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 3px;
+      right: 0;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
+      nav {
+        display: none;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 45px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(4,1fr);
+      }
+
+      .pet-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .spotlight {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .search-box {
+        display: none;
+      }
+
+      h1 {
+        font-size: 35px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .vibe-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .pet-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats,
+      .vet-benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .vet-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .vet-photo {
+        margin: auto;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+
+      .chat-text {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- NAVIGATION -->
+<header>
+  <div class="container header-inner">
+
+    <a href="#home" class="logo">
+      <div class="logo-box">
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings:'FILL' 1"
+        >
+          pets
+        </span>
+      </div>
+
+      PetConnect
+
+      <span class="nepal-badge">
+        Nepal
+      </span>
+    </a>
+
     <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <i data-lucide="paw-print"></i>
-                <span>PetConnect</span>
-            </a>
-            <div class="nav-links">
-                <a href="#">Find a Pet</a>
-                <a href="#">How it Works</a>
-                <a href="#">About Us</a>
-                <a href="#" class="btn btn-outline">Login</a>
-                <a href="#" class="btn btn-primary">Join Now</a>
-            </div>
-        </div>
+      <a href="#home" class="active">Home</a>
+      <a href="#pets">Browse Pets</a>
+      <a href="#categories">Categories</a>
+      <a href="#post">Post Ad</a>
+      <a href="#about">About</a>
+      <a href="#donate">
+        <span
+          class="material-symbols-outlined"
+          style="font-size:18px;color:#e05d7f"
+        >
+          volunteer_activism
+        </span>
+        Donate / Pay
+      </a>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Find your perfect <span class="text-primary">companion</span> today</h1>
-            <p>PetConnect makes adoption easy and transparent. Connect with local shelters and find the animal friend you've been waiting for.</p>
-            <div class="flex" style="gap: 1rem;">
-                <a href="#pets" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">Find a Pet</a>
-                <a href="#" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">Get Involved</a>
-            </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=800" alt="Happy dog with owner">
-        </div>
-    </section>
+    <div class="search-box">
+      <span class="material-symbols-outlined">
+        search
+      </span>
 
-    <!-- PET LISTINGS -->
-    <section class="section" id="pets">
-        <div class="section-header">
-            <h2>Featured Companions</h2>
-            <p style="color: var(--muted-foreground);">These lovely friends are currently looking for a home</p>
-        </div>
-        <div class="grid">
-            <!-- Pet 1 -->
-            <div class="pet-card">
-                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400" alt="Beagle" class="pet-image">
-                <div class="pet-details">
-                    <h3>Charlie</h3>
-                    <div class="pet-info">
-                        <span>Beagle</span> • <span>2 years</span>
-                    </div>
-                    <button class="btn btn-outline" style="width: 100%;">View Profile</button>
-                </div>
-            </div>
-            <!-- Pet 2 -->
-            <div class="pet-card">
-                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400" alt="Cat" class="pet-image">
-                <div class="pet-details">
-                    <h3>Luna</h3>
-                    <div class="pet-info">
-                        <span>Tabby Cat</span> • <span>1 year</span>
-                    </div>
-                    <button class="btn btn-outline" style="width: 100%;">View Profile</button>
-                </div>
-            </div>
-            <!-- Pet 3 -->
-            <div class="pet-card">
-                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&q=80&w=400" alt="Labrador" class="pet-image">
-                <div class="pet-details">
-                    <h3>Cooper</h3>
-                    <div class="pet-info">
-                        <span>Golden Retriever</span> • <span>4 years</span>
-                    </div>
-                    <button class="btn btn-outline" style="width: 100%;">View Profile</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- IMPACT SECTION -->
-    <section class="section" style="background: var(--muted); border-radius: 2rem; margin-bottom: 4rem;">
-        <div class="grid" style="text-align: center; padding: 2rem;">
-            <div>
-                <h3 style="font-size: 2.5rem; color: var(--primary);">1,200+</h3>
-                <p>Pets Adopted</p>
-            </div>
-            <div>
-                <h3 style="font-size: 2.5rem; color: var(--primary);">450+</h3>
-                <p>Active Shelters</p>
-            </div>
-            <div>
-                <h3 style="font-size: 2.5rem; color: var(--primary);">10k+</h3>
-                <p>Community Members</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CHATBOT WIDGET (Static Fallback) -->
-    <div class="chat-widget">
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">PetConnect Assistant</div>
-            <div class="chat-body" id="chatBody">
-                <div style="background: white; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 0.5rem;">
-                    Hello! How can I help you find a pet today?
-                </div>
-                <div style="background: rgba(99, 102, 241, 0.1); padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 0.5rem; color: var(--primary); font-size: 0.75rem;">
-                    Note: The AI Chat feature is currently in maintenance for the static site version. Please contact us via email.
-                </div>
-            </div>
-            <div class="chat-footer">
-                <input type="text" placeholder="Type a message..." disabled style="width: 100%; padding: 0.5rem; border: 1px solid var(--border); border-radius: 0.25rem; outline: none;">
-            </div>
-        </div>
-        <div class="chat-trigger" onclick="toggleChat()">
-            <i data-lucide="message-circle" id="chatIcon"></i>
-        </div>
+      <input
+        id="searchInput"
+        placeholder="Search pets, breeds..."
+      >
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
-                <i data-lucide="paw-print"></i>
-                <span>PetConnect</span>
-            </div>
-            <p style="color: var(--muted-foreground);">Connecting hearts and paws since 2024.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <p style="font-size: 0.75rem; color: var(--muted-foreground);">&copy; 2024 PetConnect. All rights reserved.</p>
+  </div>
+</header>
+
+<main id="home">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="floating-paw">
+      🐾
+    </div>
+
+    <div class="floating-bone">
+      🦴
+    </div>
+
+    <div class="hero-badge">
+
+      <span
+        class="material-symbols-outlined"
+        style="font-variation-settings:'FILL' 1"
+      >
+        favorite
+      </span>
+
+      Kathmandu Valley's Pet Adoption & Welfare Network 🐾
+
+    </div>
+
+    <h1>
+
+      Give a Loving Home.
+
+      <br>
+
+      <span class="brown-heading">
+        Find Your Forever Best Friend in the Valley.
+      </span>
+
+    </h1>
+
+    <p class="hero-description">
+
+      Connect directly with certified shelters, foster heroes,
+      and caring pet parents across Kathmandu, Lalitpur,
+      and Bhaktapur. Every wagging tail has a story.
+
+    </p>
+
+    <div class="buttons">
+
+      <a
+        href="#pets"
+        class="button button-primary"
+      >
+
+        <span class="material-symbols-outlined">
+          search
+        </span>
+
+        Browse Adoptable Pets 🐶
+
+      </a>
+
+      <a
+        href="#post"
+        class="button button-secondary"
+      >
+
+        <span
+          class="material-symbols-outlined"
+          style="color:#e05d7f"
+        >
+          add_circle
+        </span>
+
+        Post a Free Pet Ad
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <div class="container">
+
+    <!-- VIBE MATCHER -->
+
+    <section class="section">
+
+      <div class="matcher">
+
+        <h3>
+          ✨ Companion Vibe Matcher
+        </h3>
+
+        <p>
+          What kind of companion matches your lifestyle and living space today?
+        </p>
+
+        <div class="vibe-grid">
+
+          <button class="vibe">
+
+            <strong>
+              🛋️ Lap Cuddler
+            </strong>
+
+            <small>
+              Gentle, calm & purr-fect for apartment cozy evenings
+            </small>
+
+          </button>
+
+          <button class="vibe">
+
+            <strong>
+              ⚡ Zoomies & Hikes
+            </strong>
+
+            <small>
+              Energetic trail companion who loves fetch & long valley walks
+            </small>
+
+          </button>
+
+          <button class="vibe">
+
+            <strong>
+              🐾 Tiny Explorer
+            </strong>
+
+            <small>
+              Playful puppies and kittens ready to grow with your family
+            </small>
+
+          </button>
+
+          <button class="vibe">
+
+            <strong>
+              🌸 Gentle Soul
+            </strong>
+
+            <small>
+              Calm rescues who thrive with kids, cats & serene homes
+            </small>
+
+          </button>
+
         </div>
-    </footer>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+      </div>
 
-        // Chatbot Toggle Logic
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            const chatIcon = document.getElementById('chatIcon');
-            
-            if (chatWindow.style.display === 'flex') {
-                chatWindow.style.display = 'none';
-                chatIcon.setAttribute('data-lucide', 'message-circle');
-            } else {
-                chatWindow.style.display = 'flex';
-                chatIcon.setAttribute('data-lucide', 'x');
-            }
-            lucide.createIcons();
+    </section>
+
+
+    <!-- CATEGORIES -->
+
+    <section
+      class="section"
+      id="categories"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h2>
+            Explore Pet Services & Categories
+          </h2>
+
+        </div>
+
+        <a
+          href="#pets"
+          class="view-all"
+        >
+          All Categories →
+        </a>
+
+      </div>
+
+      <div class="category-grid">
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              volunteer_activism
+            </span>
+          </div>
+
+          <strong>
+            Adoption
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              cottage
+            </span>
+          </div>
+
+          <strong>
+            Foster Care
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              search_hands_free
+            </span>
+          </div>
+
+          <strong>
+            Lost Pets
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              location_on
+            </span>
+          </div>
+
+          <strong>
+            Found Pets
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              shopping_bag
+            </span>
+          </div>
+
+          <strong>
+            Pet Supplies
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              content_cut
+            </span>
+          </div>
+
+          <strong>
+            Pet Spa & Care
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              medical_services
+            </span>
+          </div>
+
+          <strong>
+            Vet Clinics
+          </strong>
+
+        </div>
+
+        <div class="category">
+
+          <div class="category-icon">
+            <span class="material-symbols-outlined">
+              school
+            </span>
+          </div>
+
+          <strong>
+            Positive Training
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PET OF THE DAY -->
+
+    <section class="section">
+
+      <div class="spotlight">
+
+        <div class="spotlight-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?auto=format&fit=crop&w=900&q=85"
+            alt="Yuki Japanese Spitz"
+          >
+
+          <div class="spotlight-badge">
+            ⭐ Pet of the Day Spotlight
+          </div>
+
+        </div>
+
+        <div>
+
+          <div class="fee">
+            NPR 1,500
+          </div>
+
+          <h3>
+            Meet Yuki 🌸
+          </h3>
+
+          <div class="muted">
+            Japanese Spitz • 1.5 Years • Lazimpat / Maharajgunj, Kathmandu
+          </div>
+
+          <div class="chips">
+
+            <span class="chip">
+              Snowball Sweetheart ❄️
+            </span>
+
+            <span class="chip">
+              Loyal Shadow 🐾
+            </span>
+
+            <span class="chip">
+              Alert & Cheerful 🌟
+            </span>
+
+            <span class="chip">
+              Cuddle Addict 🤗
+            </span>
+
+          </div>
+
+          <div class="stats">
+
+            <div class="stat">
+
+              🤗 Cuddle Drive 99%
+
+              <div class="bar">
+                <span style="width:99%"></span>
+              </div>
+
+            </div>
+
+            <div class="stat">
+
+              ⚡ Playfulness 92%
+
+              <div class="bar">
+                <span style="width:92%"></span>
+              </div>
+
+            </div>
+
+            <div class="stat">
+
+              🍖 Snack Loyalty 88%
+
+              <div class="bar">
+                <span style="width:88%"></span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p
+            class="muted"
+            style="font-size:14px;line-height:1.6"
+          >
+
+            Surrendered due to family relocation abroad,
+            Yuki has received full veterinary grooming and
+            health checkup by Dr. Shreya Karki.
+
+          </p>
+
+          <div
+            class="buttons"
+            style="justify-content:flex-start"
+          >
+
+            <a
+              href="#pets"
+              class="button button-primary"
+            >
+              Adopt or Meet Yuki →
+            </a>
+
+            <button
+              class="button button-secondary"
+              id="boopButton"
+            >
+
+              🐾 Boop Snoot
+              (<span id="boopCount">168</span>)
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FEATURED PETS -->
+
+    <section
+      class="section"
+      id="pets"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h2>
+
+            <span
+              class="material-symbols-outlined"
+              style="
+                color:#e05d7f;
+                font-variation-settings:'FILL' 1
+              "
+            >
+              pets
+            </span>
+
+            Featured Companions
+
+          </h2>
+
+          <p>
+            Loving dogs, cats, and puppies waiting for a family in Nepal.
+          </p>
+
+        </div>
+
+        <a
+          href="#pets"
+          class="view-all"
+        >
+          View all pets →
+        </a>
+
+      </div>
+
+
+      <div
+        class="pet-grid"
+        id="petGrid"
+      >
+
+        <!-- YUKI -->
+
+        <article
+          class="pet-card"
+          data-search="yuki japanese spitz lazimpat kathmandu"
+        >
+
+          <div class="pet-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1590419690008-905895e8fe0d?auto=format&fit=crop&w=800&q=80"
+              alt="Yuki"
+            >
+
+            <button class="favorite-button">
+
+              <span class="material-symbols-outlined">
+                favorite
+              </span>
+
+            </button>
+
+            <span class="status">
+              Adoption
+            </span>
+
+          </div>
+
+          <div class="pet-info">
+
+            <div class="pet-name-row">
+
+              <h3>
+                Yuki
+              </h3>
+
+              <span class="price">
+                NPR 1,500
+              </span>
+
+            </div>
+
+            <div class="traits">
+
+              <span>
+                Snowball Sweetheart ❄️
+              </span>
+
+              <span>
+                Loyal Shadow 🐾
+              </span>
+
+            </div>
+
+            <div class="tags">
+
+              <span>
+                Japanese Spitz
+              </span>
+
+              <span>
+                1.5 Years
+              </span>
+
+              <span>
+                Female
+              </span>
+
+            </div>
+
+            <div class="location">
+              📍 Lazimpat / Maharajgunj, Kathmandu
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- SHIRO -->
+
+        <article
+          class="pet-card"
+          data-search="shiro japanese spitz sanepa lalitpur"
+        >
+
+          <div class="pet-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1546975490-e8b92a270b58?auto=format&fit=crop&w=800&q=80"
+              alt="Shiro"
+            >
+
+            <button class="favorite-button">
+
+              <span class="material-symbols-outlined">
+                favorite
+              </span>
+
+            </button>
+
+            <span class="status">
+              Adoption
+            </span>
+
+          </div>
+
+          <div class="pet-info">
+
+            <div class="pet-name-row">
+
+              <h3>
+                Shiro
+              </h3>
+
+              <span class="price">
+                NPR 1,200
+              </span>
+
+            </div>
+
+            <div class="traits">
+
+              <span>
+                Tiny Cloud ☁️
+              </span>
+
+              <span>
+                Bouncy Explorer 🎾
+              </span>
+
+            </div>
+
+            <div class="tags">
+
+              <span>
+                Japanese Spitz
+              </span>
+
+              <span>
+                4 Months
+              </span>
+
+              <span>
+                Male
+              </span>
+
+            </div>
+
+            <div class="location">
+              📍 Sanepa, Lalitpur
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- MILO -->
+
+        <article
+          class="pet-card"
+          data-search="milo persian cat jhamsikhel lalitpur"
+        >
+
+          <div class="pet-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=800&q=80"
+              alt="Milo"
+            >
+
+            <button class="favorite-button">
+
+              <span class="material-symbols-outlined">
+                favorite
+              </span>
+
+            </button>
+
+            <span class="status">
+              Adoption
+            </span>
+
+          </div>
+
+          <div class="pet-info">
+
+            <div class="pet-name-row">
+
+              <h3>
+                Milo
+              </h3>
+
+              <span class="price">
+                NPR 1,000
+              </span>
+
+            </div>
+
+            <div class="traits">
+
+              <span>
+                Royal Couch Potato 👑
+              </span>
+
+              <span>
+                Purr Motor 🐱
+              </span>
+
+            </div>
+
+            <div class="tags">
+
+              <span>
+                Persian
+              </span>
+
+              <span>
+                2 Years
+              </span>
+
+              <span>
+                Male
+              </span>
+
+            </div>
+
+            <div class="location">
+              📍 Jhamsikhel, Lalitpur
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- CHARLIE -->
+
+        <article
+          class="pet-card"
+          data-search="charlie golden retriever baneshwor kathmandu"
+        >
+
+          <div class="pet-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80"
+              alt="Charlie"
+            >
+
+            <button
+              class="favorite-button"
+              style="color:#c44569"
+            >
+
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings:'FILL' 1"
+              >
+                favorite
+              </span>
+
+            </button>
+
+            <span class="status">
+              Adoption
+            </span>
+
+          </div>
+
+          <div class="pet-info">
+
+            <div class="pet-name-row">
+
+              <h3>
+                Charlie
+              </h3>
+
+              <span class="price">
+                NPR 1,500
+              </span>
+
+            </div>
+
+            <div class="traits">
+
+              <span>
+                Cuddle Monster 🤗
+              </span>
+
+              <span>
+                Tennis Ball Wizard 🎾
+              </span>
+
+            </div>
+
+            <div class="tags">
+
+              <span>
+                Golden Retriever
+              </span>
+
+              <span>
+                2 Years
+              </span>
+
+              <span>
+                Male
+              </span>
+
+            </div>
+
+            <div class="location">
+              📍 Baneshwor, Kathmandu
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- CLEO -->
+
+        <article
+          class="pet-card"
+          data-search="cleo siamese cat baluwatar kathmandu"
+        >
+
+          <div class="pet-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1513360309081-38f0762daed1?auto=format&fit=crop&w=800&q=80"
+              alt="Cleo"
+            >
+
+            <button class="favorite-button">
+
+              <span class="material-symbols-outlined">
+                favorite
+              </span>
+
+            </button>
+
+            <span class="status">
+              Adoption
+            </span>
+
+          </div>
+
+          <div class="pet-info">
+
+            <div class="pet-name-row">
+
+              <h3>
+                Cleo
+              </h3>
+
+            </div>
+
+            <div class="traits">
+
+              <span>
+                Sapphire Eyes 💎
+              </span>
+
+              <span>
+                Velcro Snuggler 💖
+              </span>
+
+            </div>
+
+            <div class="tags">
+
+              <span>
+                Siamese
+              </span>
+
+              <span>
+                1 Year
+              </span>
+
+              <span>
+                Female
+              </span>
+
+            </div>
+
+            <div class="location">
+              📍 Baluwatar, Kathmandu
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- ROCKY -->
+
+        <article
+          class="pet-card"
+          data-search="rocky nepali mountain indie kirtipur"
+        >
+
+          <div class="pet-photo">
+
+            <img
+              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80"
+              alt="Rocky"
+            >
+
+            <button class="favorite-button">
+
+              <span class="material-symbols-outlined">
+                favorite
+              </span>
+
+            </button>
+
+            <span class="status">
+              Adoption
+            </span>
+
+          </div>
+
+          <div class="pet-info">
+
+            <div class="pet-name-row">
+
+              <h3>
+                Rocky
+              </h3>
+
+              <span class="price">
+                NPR 1,000
+              </span>
+
+            </div>
+
+            <div class="traits">
+
+              <span>
+                Fiercely Loyal 🛡️
+              </span>
+
+              <span>
+                Trail Explorer 🌲
+              </span>
+
+            </div>
+
+            <div class="tags">
+
+              <span>
+                Nepali Mountain Indie
+              </span>
+
+              <span>
+                1.5 Years
+              </span>
+
+              <span>
+                Male
+              </span>
+
+            </div>
+
+            <div class="location">
+              📍 Kirtipur, Kathmandu Valley
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- VET SECTION -->
+
+    <section
+      class="section"
+      id="about"
+    >
+
+      <div class="vet-section">
+
+        <div>
+
+          <div class="vet-photo">
+
+            <span
+              class="material-symbols-outlined"
+              style="font-size:75px"
+            >
+              stethoscope
+            </span>
+
+          </div>
+
+          <div
+            style="
+              text-align:center;
+              margin-top:12px
+            "
+          >
+
+            <strong
+              style="
+                font-family:Quicksand;
+                font-size:18px
+              "
+            >
+              Dr. Shreya Karki
+            </strong>
+
+            <div
+              style="
+                font-size:10px;
+                color:#006a63;
+                font-weight:800
+              "
+            >
+              BVSc & AH • Small Animal Medicine
+            </div>
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <span
+            style="
+              display:inline-block;
+              background:#fff0f4;
+              color:#c44569;
+              border:1px solid #f8ccd7;
+              border-radius:25px;
+              padding:6px 10px;
+              font-size:11px;
+              font-weight:800
+            "
+          >
+
+            🩺 Kathmandu Valley Veterinary & Pet Health Pillar
+
+          </span>
+
+          <h2>
+            Verified Health Screening & Free Veterinary Triage
+          </h2>
+
+          <p class="muted">
+
+            Every adoptable pet across Kathmandu,
+            Lalitpur and Bhaktapur is backed by
+            verified medical protocols.
+
+          </p>
+
+          <div class="vet-benefits">
+
+            <div class="vet-benefit">
+
+              <strong>
+                💉 Rabies & Core
+              </strong>
+
+              <br>
+
+              <small class="muted">
+                Verified schedules
+              </small>
+
+            </div>
+
+            <div class="vet-benefit">
+
+              <strong>
+                🩹 Pre-Adoption Check
+              </strong>
+
+              <br>
+
+              <small class="muted">
+                100% Free Triage
+              </small>
+
+            </div>
+
+            <div class="vet-benefit">
+
+              <strong>
+                🚨 24/7 Hotlines
+              </strong>
+
+              <br>
+
+              <small class="muted">
+                KTM, Patan & Bhaktapur
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NEWS -->
+
+    <section
+      class="section"
+      id="donate"
+      style="
+        text-align:center;
+        background:#faebf0;
+        border:1px solid #f8ccd7;
+        border-radius:34px;
+        padding:35px;
+        margin-bottom:35px
+      "
+    >
+
+      <h2
+        style="
+          font-family:Quicksand;
+          font-size:31px;
+          margin:0 0 8px
+        "
+      >
+        Kathmandu Valley Animal Welfare News
+      </h2>
+
+      <p class="muted">
+
+        Rabies vaccination drives,
+        community rescues and adoption fairs
+        across Kathmandu, Lalitpur & Bhaktapur.
+
+      </p>
+
+    </section>
+
+
+    <section
+      class="section"
+      id="post"
+      style="text-align:center"
+    >
+
+      <p
+        style="
+          color:#8c7179;
+          font-size:12px;
+          font-weight:800;
+          text-transform:uppercase;
+          letter-spacing:.08em
+        "
+      >
+
+        Partnering with verified shelters & clinics
+        across Kathmandu Valley
+
+      </p>
+
+    </section>
+
+  </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <div style="max-width:350px">
+
+      <a
+        href="#home"
+        class="logo"
+      >
+
+        <span
+          class="material-symbols-outlined"
+          style="
+            font-size:32px;
+            font-variation-settings:'FILL' 1
+          "
+        >
+          pets
+        </span>
+
+        PetConnect
+
+      </a>
+
+      <p
+        style="
+          color:#56423c;
+          line-height:1.65
+        "
+      >
+
+        Connecting lovely pets with loving homes.
+        Creating joyful bonds one adoption at a time
+        across Nepal.
+
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <div>
+
+        <h4>
+          Explore
+        </h4>
+
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#pets">
+          Browse Pets
+        </a>
+
+        <a href="#categories">
+          Categories
+        </a>
+
+        <a href="#post">
+          Post an Advertisement
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Legal
+        </h4>
+
+        <a href="#">
+          Privacy Policy
+        </a>
+
+        <a href="#">
+          Terms of Service
+        </a>
+
+      </div>
+
+
+      <div>
+
+        <h4>
+          Support
+        </h4>
+
+        <a href="#">
+          Contact Us
+        </a>
+
+        <a href="#">
+          Help Center
+        </a>
+
+        <a href="#">
+          FAQ
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="copyright">
+    © 2026 PetConnect Nepal. All rights reserved. Built with love for pets.
+  </div>
+
+</footer>
+
+
+<!-- SANIFY CHAT STYLE -->
+
+<div class="chat">
+
+  <div class="chat-text">
+
+    <strong>
+      Ask me<br>
+      anything
+    </strong>
+
+    <small>
+      Saniffy is<br>
+      ready to help
+    </small>
+
+  </div>
+
+  <div class="chat-avatar">
+
+    <img
+      src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=180&q=80"
+      alt="Saniffy"
+    >
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* FAVORITE BUTTON */
+
+  document
+    .querySelectorAll(".favorite-button")
+    .forEach(function(button) {
+
+      button.addEventListener("click", function() {
+
+        const icon =
+          button.querySelector(".material-symbols-outlined");
+
+        const selected =
+          button.dataset.selected === "true";
+
+        if (selected) {
+
+          button.dataset.selected = "false";
+
+          button.style.color =
+            "#1f1418";
+
+          icon.style.fontVariationSettings =
+            "'FILL' 0";
+
+        } else {
+
+          button.dataset.selected = "true";
+
+          button.style.color =
+            "#c44569";
+
+          icon.style.fontVariationSettings =
+            "'FILL' 1";
+
         }
 
-        // Smooth scroll for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
+      });
+
+    });
+
+
+  /* BOOP BUTTON */
+
+  document
+    .getElementById("boopButton")
+    .addEventListener("click", function() {
+
+      const counter =
+        document.getElementById("boopCount");
+
+      counter.textContent =
+        Number(counter.textContent) + 1;
+
+    });
+
+
+  /* SEARCH */
+
+  document
+    .getElementById("searchInput")
+    .addEventListener("input", function(event) {
+
+      const search =
+        event.target.value.toLowerCase();
+
+      document
+        .querySelectorAll(".pet-card")
+        .forEach(function(card) {
+
+          const keywords =
+            card.dataset.search.toLowerCase();
+
+          if (keywords.includes(search)) {
+
+            card.style.display = "block";
+
+          } else {
+
+            card.style.display = "none";
+
+          }
+
         });
-    </script>
+
+      if (search.length > 0) {
+
+        document
+          .getElementById("pets")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
+
+      }
+
+    });
+
+
+  /* VIBE BUTTONS */
+
+  document
+    .querySelectorAll(".vibe")
+    .forEach(function(button) {
+
+      button.addEventListener("click", function() {
+
+        document
+          .querySelectorAll(".vibe")
+          .forEach(function(otherButton) {
+
+            otherButton.style.outline =
+              "none";
+
+          });
+
+        button.style.outline =
+          "2px solid #e05d7f";
+
+      });
+
+    });
+
+</script>
+
 </body>
 </html>
